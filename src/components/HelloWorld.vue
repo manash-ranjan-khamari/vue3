@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ state.msg }}</h1>
+  <h2>{{ state.msg }}</h2>
 </template>
 
 <script>
@@ -8,9 +8,9 @@ export default {
   name: 'HelloWorld',
   setup() {
     const state = reactive({
-      msg: 'hello world'
+      msg: 'Hello world'
     });
-
+    
     return {state};
   }
 }
