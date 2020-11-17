@@ -6,3 +6,53 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+.space20 {
+  height: 20px;
+}
+.main-head {
+  grid-area: header;
+  font-size: 35px;
+  font-weight: bold;
+}
+.content {
+  grid-area: content;
+}
+.main-nav {
+  grid-area: nav;
+}
+.side {
+  grid-area: sidebar;
+}
+.ad {
+  grid-area: ad;
+}
+.main-footer {
+  grid-area: footer;
+}
+
+.wrapper {
+  display: grid;
+  gap: 20px;
+  grid-template-areas: 
+    "header"
+    "nav"
+    "content"
+    "sidebar"
+    "ad"
+    "footer";
+}
+
+@media (min-width: 700px) {
+  .wrapper {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas: 
+      "header header  header"
+      "nav    content sidebar"
+      "nav    content ad"
+      "footer footer  footer"
+   }
+  nav ul {
+    list-style-type: none;
+    flex-direction: column;
+  }
+}
