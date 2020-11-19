@@ -4,20 +4,15 @@
     <nav class="main-nav">
         <ul>
             <li><img alt="Vue logo" src="./assets/logo.png" /></li>
-            <li><a href="#example1">Hello World Example</a></li> 
-            <li><a href="#example2">Props Example</a></li> 
-            <li><a href="#example3">Computed Example</a></li>
+            <li v-for="(item, index) in componentObj" :key="`example${index}`"><a :href="`#example${index}`">{{item.title}}</a></li> 
         </ul>
     </nav>
     <article class="content">
-        <h1 id="example1"><u>Example 1</u></h1>
-        <HelloWorld />
-        <div class="space20"></div>
-        <h1 id="example2"><u>Example 2</u></h1>
-        <PropsDemo message="Hello there, I am Props data passed from parent" />
-        <div class="space20"></div>
-        <h1 id="example3"><u>Example 3</u></h1>
-        <ComputedDemo /> 
+        <template v-for="(item, index) in componentObj">
+          <h1 :id="`example${index}`">---- <u>{{item.title}}</u> ----</h1>
+          <component :is="item.componentName" :message="item.message"/>
+          <div class="space20"></div>
+        </template>
     </article> 
     <aside class="side"></aside>
     <div class="ad"></div>
@@ -29,13 +24,38 @@
 import HelloWorld from './components/HelloWorld.vue';
 import PropsDemo from './components/Props.vue';
 import ComputedDemo from './components/Computed.vue';
+import RefDemo from './components/Ref.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     PropsDemo,
-    ComputedDemo
+    ComputedDemo,
+    RefDemo
+  },
+  setup() {
+    let componentObj = [{
+      title: 'Basic Example',
+      componentName: HelloWorld
+    },
+    {
+      title: 'Props Example',
+      componentName: PropsDemo,
+      message: 'Hello there, I am Props data passed from parent'
+    },
+    {
+      title: 'Computed Example',
+      componentName: ComputedDemo
+    },
+    {
+      title: 'Ref Example',
+      componentName: RefDemo
+    }];
+
+    return {
+      componentObj
+    };
   }
 }
 </script>
